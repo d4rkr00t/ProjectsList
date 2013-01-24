@@ -5,48 +5,78 @@ import sys
 import os
 import glob
 
-# os.chdir(sublime.packages_path()+'/User')
-# dir_files = glob.glob("*.sublime-project")
+class ProjectsListOpenCommand(sublime_plugin.WindowCommand):
+	def run(self):
+		show_select_projects(self)
 
-# TODO: Refactor class ProjectsListShowCommand
-class ProjectsListShowCommand(sublime_plugin.WindowCommand):
-  def run(self):
-    #Settings load:
-    settings = sublime.load_settings('ProjectsList.sublime-settings')
+	def selected(self, item):
+		load_project(self, item, True, True)
 
-    self.subl_path = sys.executable
+class ProjectsListAppendCommand(sublime_plugin.WindowCommand):
+	def run(self):
+		show_select_projects(self)
 
-    if not self.subl_path:
-      sublime.error_message("No Sublime path specified for current OS!")
-      raise Exception("No Sublime path specified for current OS!")
+	def selected(self, item):
+		if item != -1:
+			load_project(self, item, False, False)
 
-    try:
-      with open(self.subl_path) as f: pass
-    except IOError as e:
-      sublime.error_message("Wrong Sublime path!")
-      raise Exception("Wrong Sublime path!")
 
-    if settings.get('projects_'+sublime.platform()):
-      self.projects = settings.get('projects_'+sublime.platform())
 
-    print self.projects
+# ========================================================
+# 
+# Shared methods
+# 
+# ========================================================
 
-    names = []
+def load_project(self, item, clear_folders_list, open_on_start):
+	#
+	# Load project by selected id
+	#
+	if item != -1:
 
-    for i in self.projects:
-        names.append("%s" % (i["name"]))
+		if clear_folders_list:
+			self.window.run_command('close_folder_list');
 
-    self.window.show_quick_panel(names, self.selected, sublime.MONOSPACE_FONT)
+		for path in self.projects[item]['paths']:
+			if sublime.platform() == "windows":
+				project_path = u' -a '.join((self.subl_path, path)).encode('cp1251').strip()
+			else:
+				project_path = u' -a '.join((self.subl_path, path))
 
-  def selected(self, item):
-    if item != -1:
-      for path in self.projects[item]['paths']:
-        if sublime.platform() == "windows":
-          project_path = u' -a '.join((self.subl_path, path)).encode('cp1251').strip()
-        else:
-          project_path = u' -a '.join((self.subl_path, path))
-        
-        subprocess.Popen(project_path)
+			subprocess.Popen(project_path)
 
-      for f in self.projects[item]['open_on_start']:
-        self.window.open_file(f)
+		if open_on_start:
+			for f in self.projects[item]['open_on_start']:
+				self.window.open_file(f)
+
+
+
+
+def show_select_projects(self):
+	#
+	# Load projects list and show select popup
+	#
+	#Settings load:
+	settings = sublime.load_settings('ProjectsList.sublime-settings')
+
+	self.subl_path = sys.executable
+
+	if not self.subl_path:
+		sublime.error_message("No Sublime path specified for current OS!")
+		raise Exception("No Sublime path specified for current OS!")
+
+	try:
+		with open(self.subl_path) as f: pass
+	except IOError as e:
+		sublime.error_message("Wrong Sublime path!")
+		raise Exception("Wrong Sublime path!")
+
+	if settings.get('projects_'+sublime.platform()):
+		self.projects = settings.get('projects_'+sublime.platform())
+
+	names = []
+
+	for i in self.projects:
+		names.append("%s" % (i["name"]))
+
+	self.window.show_quick_panel(names, self.selected, sublime.MONOSPACE_FONT)

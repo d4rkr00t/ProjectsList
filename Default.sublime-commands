@@ -1,8 +1,13 @@
 [
 	{
-	  "id": "showprojectslist",
-	  "caption": "Projects List: Show List",
-	  "command": "projects_list_show"
+	  "id": "projectslistopen",
+	  "caption": "Projects List: Open project",
+	  "command": "projects_list_open"
+	},
+	{
+	  "id": "projectslistappend",
+	  "caption": "Projects List: Append project folders to current project",
+	  "command": "projects_list_append"
 	},
 	{
 		"caption": "ProjectList: Manage Projects",
