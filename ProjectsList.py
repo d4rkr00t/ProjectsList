@@ -43,7 +43,9 @@ def load_project(self, item, clear_folders_list, open_on_start):
 			else:
 				project_path = u' -a '.join((self.subl_path, path))
 
-			subprocess.Popen(project_path)
+			print project_path
+
+			subprocess.Popen(project_path, shell=True)
 
 		if open_on_start:
 			for f in self.projects[item]['open_on_start']:
@@ -59,20 +61,26 @@ def show_select_projects(self):
 	#Settings load:
 	settings = sublime.load_settings('ProjectsList.sublime-settings')
 
-	self.subl_path = sys.executable
+	self.subl_path = get_sublime_path()
 
 	if not self.subl_path:
 		sublime.error_message("No Sublime path specified for current OS!")
 		raise Exception("No Sublime path specified for current OS!")
 
+	print self.subl_path
+
 	try:
-		with open(self.subl_path) as f: pass
+		# with open(self.subl_path) as f: pass
+		with open("/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl") as f: pass
 	except IOError as e:
 		sublime.error_message("Wrong Sublime path!")
 		raise Exception("Wrong Sublime path!")
 
 	if settings.get('projects_'+sublime.platform()):
 		self.projects = settings.get('projects_'+sublime.platform())
+	else:
+		sublime.error_message("No projects definde, goto Manage Projects!")
+		raise Exception("No projects definde, goto Manage Projects!")		
 
 	names = []
 
@@ -80,3 +88,10 @@ def show_select_projects(self):
 		names.append("%s" % (i["name"]))
 
 	self.window.show_quick_panel(names, self.selected, sublime.MONOSPACE_FONT)
+
+def get_sublime_path():
+    if sublime.platform() == 'osx':
+        return '/Applications/Sublime\\ Text\\ 2.app/Contents/SharedSupport/bin/subl'
+    if sublime.platform() == 'linux':
+        return open('/proc/self/cmdline').read().split(chr(0))[0]
+    return sys.executable
