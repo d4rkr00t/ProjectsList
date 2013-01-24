@@ -1,0 +1,23 @@
+{
+	// "projects_windows": [
+		// {
+		// 	"name":"KmvJobs", 
+		// 	"paths": ["folder append", "second folder append", ...], 
+		// 	"open_on_start": ["file opened on start", "second file append on start", ...]
+		// },
+	// ],
+	// "projects_linux": [
+		// {
+		// 	"name":"KmvJobs", 
+		// 	"paths": ["folder append", "second folder append", ...], 
+		// 	"open_on_start": ["file opened on start", "second file append on start", ...]
+		// },
+	// ],
+	// "projects_osx": [
+		// {
+		// 	"name":"KmvJobs", 
+		// 	"paths": ["folder append", "second folder append", ...], 
+		// 	"open_on_start": ["file opened on start", "second file append on start", ...]
+		// },
+	// ]
+}

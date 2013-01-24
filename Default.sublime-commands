@@ -1,0 +1,14 @@
+[
+	{
+	  "id": "showprojectslist",
+	  "caption": "Projects List: Show List",
+	  "command": "projects_list_show"
+	},
+	{
+		"caption": "ProjectList: Manage Projects",
+        "command": "open_file", "args":
+        {
+            "file": "${packages}/User/ProjectsList.sublime-settings"
+        }
+	}
+]
