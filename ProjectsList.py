@@ -67,15 +67,6 @@ def show_select_projects(self):
 		sublime.error_message("No Sublime path specified for current OS!")
 		raise Exception("No Sublime path specified for current OS!")
 
-	print self.subl_path
-
-	try:
-		# with open(self.subl_path) as f: pass
-		with open("/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl") as f: pass
-	except IOError as e:
-		sublime.error_message("Wrong Sublime path!")
-		raise Exception("Wrong Sublime path!")
-
 	if settings.get('projects_'+sublime.platform()):
 		self.projects = settings.get('projects_'+sublime.platform())
 	else:
