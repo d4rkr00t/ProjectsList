@@ -28,21 +28,21 @@ Projects list format:
 	{
 		// "projects_windows": [
 			// {
-			// 	"name":"KmvJobs", 
+			// 	"name":"Project Name", 
 			// 	"paths": ["folder append", "second folder append", ...], 
 			// 	"open_on_start": ["file opened on start", "second file append on start", ...]
 			// },
 		// ],
 		// "projects_linux": [
 			// {
-			// 	"name":"KmvJobs", 
+			// 	"name":"Project Name", 
 			// 	"paths": ["folder append", "second folder append", ...], 
 			// 	"open_on_start": ["file opened on start", "second file append on start", ...]
 			// },
 		// ],
 		// "projects_osx": [
 			// {
-			// 	"name":"KmvJobs", 
+			// 	"name":"Project Name", 
 			// 	"paths": ["folder append", "second folder append", ...], 
 			// 	"open_on_start": ["file opened on start", "second file append on start", ...]
 			// },
