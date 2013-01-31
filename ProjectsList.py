@@ -5,6 +5,7 @@ import sys
 import os
 import glob
 
+
 class ProjectsListOpenCommand(sublime_plugin.WindowCommand):
 	def run(self):
 		show_select_projects(self)
@@ -37,15 +38,15 @@ def load_project(self, item, clear_folders_list, open_on_start):
 		if clear_folders_list:
 			self.window.run_command('close_folder_list');
 
+		project_path = u" -a "
+
 		for path in self.projects[item]['paths']:
 			if sublime.platform() == "windows":
-				project_path = u' -a '.join((self.subl_path, path)).encode('cp1251').strip()
+				project_path = project_path + " " + str(path.encode('cp1251').strip())
 			else:
-				project_path = u' -a '.join((self.subl_path, path))
+				project_path = project_path + " " + path
 
-			print project_path
-
-			subprocess.Popen(project_path, shell=True)
+		subprocess.Popen(self.subl_path + " " + project_path, shell=True)
 
 		if open_on_start:
 			for f in self.projects[item]['open_on_start']:
