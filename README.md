@@ -54,4 +54,4 @@ Projects list format:
 		 ]
 	}
 
-And then you may call command "Open prject" or "Append Project" from command palette.
+And then you may call command "Open project" or "Append Project" from command palette.
