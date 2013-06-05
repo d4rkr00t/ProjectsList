@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import sublime, sublime_plugin
 import subprocess
-import sys 
-import os
-import glob
+import sys
 
 
 class ProjectsListOpenCommand(sublime_plugin.WindowCommand):
@@ -24,9 +22,9 @@ class ProjectsListAppendCommand(sublime_plugin.WindowCommand):
 
 
 # ========================================================
-# 
+#
 # Shared methods
-# 
+#
 # ========================================================
 
 def load_project(self, item, clear_folders_list, open_on_start):
@@ -72,7 +70,7 @@ def show_select_projects(self):
 		self.projects = settings.get('projects_'+sublime.platform())
 	else:
 		sublime.error_message("No projects definde, goto Manage Projects!")
-		raise Exception("No projects definde, goto Manage Projects!")		
+		raise Exception("No projects definde, goto Manage Projects!")
 
 	names = []
 

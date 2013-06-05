@@ -9,6 +9,11 @@
 	  "caption": "Projects List: Append project folders to current project",
 	  "command": "projects_list_append"
 	},
+    {
+      "id": "projectslistcloseall",
+      "caption": "Projects List: Close all projects",
+      "command": "close_folder_list"
+    },
 	{
 		"caption": "ProjectList: Manage Projects",
         "command": "open_file", "args":
