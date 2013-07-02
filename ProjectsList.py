@@ -81,7 +81,7 @@ def show_select_projects(self):
 
 def get_sublime_path():
     if sublime.platform() == 'osx':
-        return '/Applications/Sublime\\ Text\\ 2.app/Contents/SharedSupport/bin/subl'
+        return '/Applications/Sublime\\ Text\\.app/Contents/SharedSupport/bin/subl'
     if sublime.platform() == 'linux':
         return open('/proc/self/cmdline').read().split(chr(0))[0]
     return sys.executable
