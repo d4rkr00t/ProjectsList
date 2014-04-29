@@ -1,5 +1,5 @@
 # ProjectsList
-Simple Projects List for Sublime Text 2
+Simple Projects List for Sublime Text 3
 
 ## Overview
 
@@ -10,7 +10,7 @@ You may also define files in project openes on startup.
 ProjectsList plugin allow you open single project or append any defined projects to alredy opened.
 
 ## Installation
-Note with either method, you may need to restart Sublime Text 2 for the plugin to load.
+Note with either method, you may need to restart Sublime Text 3 for the plugin to load.
 
 ### Package Control
  TODO: Add to Package Control
